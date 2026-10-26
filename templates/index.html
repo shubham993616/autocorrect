@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LexiPulse — AI Writing Assistant & Autocorrect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Navigation -->
+    <header class="navbar">
+      <div class="nav-brand">
+        <div class="brand-logo">✨</div>
+        <div>
+          <h1>LexiPulse</h1>
+          <p>AI-Powered Grammar & Style Assistant</p>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <div class="status-badge">
+          <span class="pulse-dot"></span> Live Engine Active
+        </div>
+        <div class="lang-picker">
+          <label for="language">Language</label>
+          <select id="language">
+            <option value="en-US">English (US)</option>
+            <option value="en-GB">English (UK)</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="workspace">
+      <!-- Editor Card -->
+      <section class="card editor-card">
+        <div class="card-header">
+          <h2>Text Editor</h2>
+          <div class="quick-stats" id="quick-stats">0 words · 0 chars</div>
+        </div>
+
+        <div class="suggestion-container">
+          <div id="suggestion-bar" class="suggestion-bar" aria-live="polite">
+            <span class="suggestion-hint">💡 Type a word to see live suggestions</span>
+          </div>
+          <div id="editor" class="editor-box" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="Start typing or paste your text here..."></div>
+        </div>
+
+        <div class="editor-toolbar">
+          <div class="keyboard-tip">Tip: Use <b>↑</b> <b>↓</b> and <b>Enter</b> to pick suggestions</div>
+          <div class="editor-buttons">
+            <button id="clear-btn" class="btn secondary">Clear</button>
+            <button id="correct-btn" class="btn primary">
+              <span class="btn-icon">⚡</span> Check Grammar & Style
+            </button>
+          </div>
+        </div>
+        <div id="notice" class="notice-box" role="status"></div>
+      </section>
+
+      <!-- Analysis & Results Sidebar -->
+      <aside class="card sidebar-card">
+        <div class="sidebar-header">
+          <h3>Correction & Insights</h3>
+          <span id="issue-badge" class="issue-badge hidden">0 issues</span>
+        </div>
+
+        <div id="insights-placeholder" class="insights-placeholder">
+          <div class="placeholder-icon">🛡️</div>
+          <h4>Ready for Inspection</h4>
+          <p>Click <b>Check Grammar & Style</b> to scan your text for spelling, punctuation, grammar, and stylistic enhancements.</p>
+        </div>
+
+        <div id="results-panel" class="results-panel hidden">
+          <div class="stats-grid">
+            <div class="stat-item"><span id="stat-words">0</span><label>Words</label></div>
+            <div class="stat-item"><span id="stat-sentences">0</span><label>Sentences</label></div>
+            <div class="stat-item"><span id="stat-time">0m</span><label>Read Time</label></div>
+          </div>
+
+          <div class="corrected-preview-section">
+            <label class="section-label">Polished Output</label>
+            <textarea id="corrected-output" readonly></textarea>
+            <div class="preview-actions">
+              <button id="use-result" class="btn primary small">Use Polished Text</button>
+              <button id="download-result" class="btn secondary small">Download .txt</button>
+            </div>
+          </div>
+
+          <div class="issues-section">
+            <label class="section-label">Detected Issues</label>
+            <div id="changes-list" class="changes-list"></div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      LexiPulse Assistant &copy; 2026 &bull; Designed for precision writing
+    </footer>
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
